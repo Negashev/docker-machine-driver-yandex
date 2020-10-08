@@ -11,5 +11,6 @@ RUN find releases -maxdepth 2 -mindepth 2 -type f -exec bash -c 'tar -cvzf "$(di
 RUN mv releases/*.tar.gz data/
 
 FROM nginx:stable-alpine
+EXPOSE 80
 RUN echo 'server { listen   80; root   /data; location / { autoindex on; autoindex_format json; } }' > /etc/nginx/conf.d/default.conf
 COPY --from=build /go/src/github.com/yandex-cloud/docker-machine-driver-yandex/data/ /data
