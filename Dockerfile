@@ -12,4 +12,4 @@ RUN mv releases/*.tar.gz data/
 
 FROM nginx:stable-alpine
 RUN echo 'server { listen   80; root   /data; location / { autoindex on; autoindex_format json; } }' > /etc/nginx/conf.d/default.conf
-COPY --from=build /go/src/docker-machine-driver-yandex/data/ /data
+COPY --from=build /go/src/github.com/yandex-cloud/docker-machine-driver-yandex/data/ /data
