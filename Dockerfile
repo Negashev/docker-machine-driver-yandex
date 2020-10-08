@@ -6,7 +6,7 @@ WORKDIR /go/src/github.com/yandex-cloud/docker-machine-driver-yandex
 RUN mkdir -p releases
 RUN mkdir -p data
 
-RUN gox -output="releases/{{.Dir}}_`git describe --tags --abbrev=0`_{{.OS}}_{{.Arch}}/{{.Dir}}" -ldflags "-X main.Version=`git describe --tags --abbrev=0`"
+RUN gox -os="linux windows freebsd openbsd netbsd" -output="releases/{{.Dir}}_`git describe --tags --abbrev=0`_{{.OS}}_{{.Arch}}/{{.Dir}}" -ldflags "-X main.Version=`git describe --tags --abbrev=0`"
 RUN find releases -maxdepth 2 -mindepth 2 -type f -exec bash -c 'tar -cvzf "$(dirname {}).tar.gz" -C "$(dirname {})" $(basename {})' \;
 RUN mv releases/*.tar.gz data/
 
