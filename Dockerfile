@@ -1,5 +1,5 @@
 FROM golang as build
-RUN go get -u github.com/yandex-cloud/docker-machine-driver-yandex
+RUN git clone https://github.com/Negashev/docker-machine-driver-yandex-1 /go/src/github.com/yandex-cloud/docker-machine-driver-yandex
 RUN go get github.com/mitchellh/gox
 WORKDIR /go/src/github.com/yandex-cloud/docker-machine-driver-yandex
 
