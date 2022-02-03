@@ -12,5 +12,6 @@ RUN mv releases/*.tar.gz data/
 
 FROM nginx:stable-alpine
 EXPOSE 80
-RUN echo 'server { listen   80; root   /data; location / { autoindex on; autoindex_format json; } }' > /etc/nginx/conf.d/default.conf
+ENV PORT=80
+RUN echo "server { listen   $PORT; root   /data; location / { autoindex on; autoindex_format json; } }" > /etc/nginx/conf.d/default.conf
 COPY --from=build /go/src/github.com/yandex-cloud/docker-machine-driver-yandex/data/ /data
